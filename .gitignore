@@ -1,0 +1,11 @@
+# gradle
+.gradle/
+build/
+!gradle-wrapper.jar
+
+# IntelliJ
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store
