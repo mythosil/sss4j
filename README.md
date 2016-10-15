@@ -1,6 +1,8 @@
 sss4j (Secret Sharing Scheme for Java)
 ======================================
 
+[![Build Status](https://travis-ci.org/mythosil/sss4j.svg?branch=master)](https://travis-ci.org/mythosil/sss4j)
+
 Library project of Shamir's Secret Sharing Scheme.
 
 ## License
