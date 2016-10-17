@@ -33,6 +33,10 @@ import java.util.stream.Collectors;
  */
 public class Sss4j {
 
+    private Sss4j() {
+        // make its constructor private
+    }
+
     /**
      * To split secret on default GF256 implementation.
      *
