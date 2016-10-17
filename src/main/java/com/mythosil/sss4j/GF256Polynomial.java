@@ -113,6 +113,7 @@ public class GF256Polynomial {
      *
      * @param points    points on polynomial
      * @param x         x
+     * @param gf256     GF256 implementation
      * @return y
      */
     public static int interpolate(List<Point> points, int x, GF256 gf256) {

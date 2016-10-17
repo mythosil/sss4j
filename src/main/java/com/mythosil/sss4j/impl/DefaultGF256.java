@@ -29,13 +29,6 @@ import com.mythosil.sss4j.GF256;
  */
 public class DefaultGF256 implements GF256 {
 
-    /**
-     * To operate addition on GF256.
-     *
-     * @param x 0-255
-     * @param y 0-255
-     * @return addition result (0-255)
-     */
     public int add(int x, int y) {
         if (x < 0 || x > 255) {
             throw new IllegalArgumentException("x should be 0-255");
@@ -45,13 +38,6 @@ public class DefaultGF256 implements GF256 {
         return x ^ y;
     }
 
-    /**
-     * To operate subtraction on GF256.
-     *
-     * @param x 0-255
-     * @param y 0-255
-     * @return subtraction result (0-255)
-     */
     public int sub(int x, int y) {
         if (x < 0 || x > 255) {
             throw new IllegalArgumentException("x should be 0-255");
@@ -67,9 +53,9 @@ public class DefaultGF256 implements GF256 {
      * <p>
      * exp(log(X) + log(Y)) == X * Y
      *
-     * @param x 0-255
-     * @param y 0-255
-     * @return multiplication result (0-255)
+     * @param x    multiplicand (0-255)
+     * @param y    multiplier (0-255)
+     * @return product (0-255)
      */
     public int mul(int x, int y) {
         if (x < 0 || x > 255) {
@@ -89,10 +75,9 @@ public class DefaultGF256 implements GF256 {
      * <p>
      * exp(log(X) - log(Y)) == X * Y
      *
-     * @param x 0-255
-     * @param y 1-255
-     * @return division result (0-255)
-     * @throws ArithmeticException
+     * @param x    dividend (0-255)
+     * @param y    divisor (1-255)
+     * @return quotient (0-255)
      */
     public int div(int x, int y) {
         if (y == 0) {

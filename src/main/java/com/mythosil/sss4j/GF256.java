@@ -24,21 +24,37 @@ public interface GF256 {
 
     /**
      * To operate addition on GF256.
+     *
+     * @param x    addend (0-255)
+     * @param y    addend (0-255)
+     * @return sum (0-255)
      */
     int add(int x, int y);
 
     /**
      * To operate subtraction on GF256.
+     *
+     * @param x    minuend (0-255)
+     * @param y    subtrahend (0-255)
+     * @return difference (0-255)
      */
     int sub(int x, int y);
 
     /**
      * To operate multiplication on GF256.
+     *
+     * @param x    multiplicand (0-255)
+     * @param y    multiplier (0-255)
+     * @return product (0-255)
      */
     int mul(int x, int y);
 
     /**
      * To operate division on GF256.
+     *
+     * @param x    dividend (0-255)
+     * @param y    divisor (1-255)
+     * @return quotient (0-255)
      */
     int div(int x, int y);
 

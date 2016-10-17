@@ -20,8 +20,10 @@ import java.util.List;
 /**
  * Matrix on GF256.
  *
+ * <ul>
  * <li>num of rows: N
  * <li>num of columns: N+1
+ * </ul>
  *
  * @since 1.0.0
  */
@@ -34,6 +36,7 @@ public class GF256Matrix {
      * Constructor
      *
      * @param data    raw data
+     * @param gf256   GF256 implementation
      */
     public GF256Matrix(int[][] data, GF256 gf256) {
         if (data == null
@@ -49,6 +52,7 @@ public class GF256Matrix {
      * Constructor
      *
      * @param points    Points
+     * @param gf256     GF256 implementation
      */
     public GF256Matrix(List<Point> points, GF256 gf256) {
         if (points == null || points.isEmpty()) {
