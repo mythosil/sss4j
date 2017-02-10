@@ -5,7 +5,17 @@ sss4j (Secret Sharing Scheme for Java)
 
 Library project of Shamir's Secret Sharing Scheme.
 
-## Example
+## Usage
+
+### Gradle
+
+```
+dependencies {
+  compile 'com.mythosil:sss4j:1.0.0'
+}
+```
+
+### Example codes
 
 ```java
 byte[] secret = "wanna make this secret".getBytes();

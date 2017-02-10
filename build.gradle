@@ -1,7 +1,10 @@
-group 'com.mythosil.sss4j'
-version '1.0.0-SNAPSHOT'
+group 'com.mythosil'
+version '1.0.0'
+description 'Secret Sharing Scheme for Java'
 
 apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -12,4 +15,75 @@ repositories {
 
 dependencies {
     testCompile 'junit:junit:4.12'
+}
+
+ext {
+    sonatypeUrl = project.hasProperty('release') \
+            ? 'https://oss.sonatype.org/service/local/staging/deploy/maven2' \
+            : 'https://oss.sonatype.org/content/repositories/snapshots'
+}
+
+task javadocJar(type: Jar) {
+    classifier 'javadoc'
+    from "${buildDir}/javadoc"
+}
+
+task sourcesJar(type: Jar) {
+    classifier 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    required { project.hasProperty('release') }
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        if (project.hasProperty('release') || project.hasProperty('snapshot')) {
+            println(sonatypeUrl)
+            version = version + (project.hasProperty('release') ? '' : '-SNAPSHOT')
+
+            mavenDeployer {
+                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+                repository(url: sonatypeUrl) {
+                    authentication(userName: sonatypeUserName, password: sonatypePassword)
+                }
+
+                pom.project {
+                    name 'sss4j'
+                    packaging 'jar'
+                    description 'Secret Sharing Scheme for Java'
+                    url 'https://github.com/mythosil/sss4j'
+
+                    scm {
+                        url "scm:git@github.com:mythosil/sss4j.git"
+                        connection "scm:git@github.com:mythosil/sss4j.git"
+                        developerConnection "scm:git@github.com:mythosil/sss4j.git"
+                    }
+                    licenses {
+                        license {
+                            name 'The Apache Software License, Version 2.0'
+                            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id 'mythosil'
+                            name 'Akito Tabira'
+                            email 'mythosil2008@gmail.com'
+                        }
+                    }
+                }
+            }
+        } else {
+            println("local")
+            mavenLocal()
+        }
+    }
 }
